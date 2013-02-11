@@ -88,7 +88,52 @@
 ;;----------------------------------------------------------
 ;; Anything
 ;;----------------------------------------------------------
-;;(let ((original-browse-url-browser-function browse-url-browser-function))
-;;  (el-get 'sync '(anything))
-;;  (require 'anything-config)
+(el-get 'sync '(anything))
+(require 'anything-config)
+
+;;----------------------------------------------------------
+;; Haskell-mode
+;; 参考: http://tcnksm.sakura.ne.jp/blog/2012/09/30/emacs%E3%81%A7haskell%E3%82%92%E6%9B%B8%E3%81%8F%E8%A8%AD%E5%AE%9A/
+;;----------------------------------------------------------
+(el-get 'sync '(haskell-mode))
+(require 'haskell-mode)
+(require 'haskell-cabal)
+
+; 拡張子とメジャーモードの関連付け
+(add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.lhs$" . literate-haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
+
+; Haskell 製のコマンドと haskell-mode の関連付け
+(add-to-list 'interpreter-mode-alist '("runghc" . haskell-mode))
+(add-to-list 'interpreter-mode-alist '("runhaskell" . haskell-mode))
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'font-lock-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-ghci)
+
+; ghc-mod
+(add-to-list 'exec-path (concat (getenv "HOME") "/.cabal/bin"))
+(add-to-list 'load-path "~/.emacs.d/elisp/ghc-mod")
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+
+; auto-complete
+(ac-define-source ghc-mod
+  '((depends ghc)
+    (candidates . (ghc-select-completion-symbol))
+    (symbol . "s")
+    (cache)))
+
+(defun my-ac-haskell-mode ()
+  (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-dictionary ac-source-ghc-mod)))
+(add-hook 'haskell-mode-hook 'my-ac-haskell-mode)
+
+(defun my-haskell-ac-init ()
+  (when (member (file-name-extension buffer-file-name) '("hs" "lhs"))
+    (auto-complete-mode t)
+    (setq ac-sources '(ac-source-words-in-same-mode-buffers ac-source-dictionary ac-source-ghc-mod))))
+
+(add-hook 'find-file-hook 'my-haskell-ac-init)
 
