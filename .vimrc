@@ -1,24 +1,8 @@
-"==<indent>================================================
-set tabstop=4 "An indentation level every four columns"
-set expandtab "Convert all tabs typed into spacces"
-set shiftwidth=4 "Indent/outdent by four columns"
-set shiftround   "Always indent/outdent to the nearest tabstop"
-
-"==<decorate>===============================================
-syntax on
-set hlsearch
-set showmatch
-
-"==<search>=================================================
-set noincsearch
-set wrapscan
-
-"==<status line>============================================
+" [status line]
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 
-"==<font encoding judge>====================================
-
+" [文字コード]
 " 文字コードの自動認識
 if &encoding !=# 'utf-8'
   set encoding=japan
@@ -73,20 +57,39 @@ set fenc=utf-8
 set fencs=utf-8
 set ff=unix
 
-set autoindent
-set number
-set paste
-
-"let g:outputz_secret_key = 'q7eHdU2Xv5dJ'
-"let g:outputz_uri_function= 'http://localhost/vim'
-
-nmap <F2> :Tlist<CR>
-let Tlist_Ctags_Cmd = "/opt/local/bin/ctags"    "ctagsのパス
-let Tlist_Show_One_File = 1               "現在編集中のソースのタグしか表示しない
-let Tlist_Exit_OnlyWindow = 1             "taglistのウィンドーが最後のウィンドーならばVimを閉じる
-"let Tlist_Use_Right_Window = 1            "右側でtaglistのウィンドーを表示
+" [インデント]
+set smartindent
+set smarttab
+set smartcase
 
 filetype on
-filetype plugin on
+filetype plugin indent on
 
-let g:acp_enableAtStartup = 1
+set tabstop=2 "An indentation level every four columns"
+set expandtab "Convert all tabs typed into spacces"
+set shiftwidth=4 "Indent/outdent by four columns"
+
+augroup vimrc
+autocmd! FileType perl setlocal shiftwidth=4 tabstop=2 softtabstop=2
+autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType css  setlocal shiftwidth=4 tabstop=2 softtabstop=2
+autocmd! FileType ruby  setlocal shiftwidth=2 tabstop=2 softtabstop=2
+augroup END
+
+" バックスペースでインデントや改行を削除できるようにする
+set backspace=indent,eol,start
+
+" [検索]
+syntax on
+set hlsearch
+" 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
+set showmatch
+set noincsearch
+" 検索時にファイルの最後まで行ったら最初に戻る (nowrapscan:戻らない)
+set wrapscan
+
+" [その他]
+set number
+set paste
+" テキスト挿入中の自動折り返しを日本語に対応させる
+set formatoptions+=mM
