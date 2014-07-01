@@ -70,9 +70,11 @@ set expandtab "Convert all tabs typed into spacces"
 set shiftwidth=4 "Indent/outdent by four columns"
 
 augroup vimrc
+au BufNewFile,BufRead *.scss setf css
+au BufRead,BufNewFile *.md set filetype=markdown
 autocmd! FileType perl setlocal shiftwidth=4 tabstop=2 softtabstop=2
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd! FileType css  setlocal shiftwidth=4 tabstop=2 softtabstop=2
+autocmd! FileType css  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType php  setlocal shiftwidth=4 tabstop=2 softtabstop=2
 autocmd! FileType ruby  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -141,4 +143,6 @@ Plugin 'plasticboy/vim-markdown'
 " -- html5
 Plugin 'othree/html5.vim'
 
-
+" -- css
+Plugin 'JulesWang/css.vim'
+Plugin 'cakebaker/scss-syntax.vim'
