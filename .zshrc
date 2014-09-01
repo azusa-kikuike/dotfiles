@@ -24,7 +24,7 @@ setopt auto_pushd
 setopt pushd_ignore_dups
  
 # alias
-alias ls='ls --color=auto'
+alias ls='ls -FG'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -42,12 +42,6 @@ alias -g X='| xargs'
 alias tsp='tmux new-session \; split-window -h -d'
 alias tvsp='tmux new-session \; split-window -d'
 
-export http_proxy=http://proxy.konami:8080
-export https_proxy=$http_proxy
-
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 source ~/.bash_profile
-
-alias swfc="cd $HOME/project/swfc"
-alias chef-repo="cd $HOME/learnings/chef-repo"
