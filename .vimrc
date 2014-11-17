@@ -71,6 +71,7 @@ set shiftwidth=4 "Indent/outdent by four columns"
 
 augroup vimrc
 au BufNewFile,BufRead *.scss setf css
+au BufNewFile,BufRead *.slim setf html
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd! FileType perl setlocal shiftwidth=4 tabstop=2 softtabstop=2
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
