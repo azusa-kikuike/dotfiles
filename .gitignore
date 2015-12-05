@@ -1,0 +1,6 @@
+*.p12
+*.env
+Gemfile.lock
+log/*
+tmp/*
+node_modules

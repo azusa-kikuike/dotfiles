@@ -5,12 +5,6 @@
 # emacslike
 bindkey -e
 
-# prompt
-autoload -U colors
-
-#colors
-PROMPT='[%n@%m]$ '
-RPROMPT='[%d]'
  
 # completion
 fpath=(/usr/local/share/zsh-completions $fpath)
@@ -36,7 +30,6 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 # others
-setopt ignore_eof
 setopt no_flow_control
 setopt no_beep
  
@@ -58,6 +51,7 @@ alias -g W='| wc'
 alias -g X='| xargs'
 alias tsp='tmux new-session \; split-window -h -d'
 alias tvsp='tmux new-session \; split-window -d'
+alias mysql="mysql --auto-rehash"
 
 source ~/.bash_profile
 #alias tullys='ssh azusa.kikuchi@tullys.gaiax.com -A'
@@ -99,3 +93,27 @@ function peco-ssh() {
 }
 alias ss="peco-ssh"
 alias ssr="peco-ssh root"
+
+# prompt
+function ruby_version()
+{
+    if which rvm-prompt &> /dev/null; then
+      rvm-prompt i v g
+    else
+      if which rbenv &> /dev/null; then
+        rbenv version | sed -e "s/ (set.*$//"
+      fi
+    fi
+}
+
+function node_version()
+{
+  if which node &> /dev/null; then
+    node -v | sed -e "s/ (set.*$//"
+  fi
+}
+
+# prompt
+autoload -U colors
+PROMPT='[%n@%m]$ '
+RPROMPT="[%d rb: $(ruby_version) node: $(node_version)]"

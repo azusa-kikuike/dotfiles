@@ -122,6 +122,22 @@ Plugin 'L9'
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+" -- markdown
+"Plugin 'plasticboy/vim-markdown'
+
+" -- html5
+Plugin 'othree/html5.vim'
+
+" -- css
+Plugin 'JulesWang/css.vim'
+Plugin 'cakebaker/scss-syntax.vim'
+
+" -- coffee
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'noc7c9/vim-iced-coffee-script'
+
+Plugin 'tomlion/vim-solidity'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -137,13 +153,3 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
-" -- markdown
-Plugin 'plasticboy/vim-markdown'
-
-" -- html5
-Plugin 'othree/html5.vim'
-
-" -- css
-Plugin 'JulesWang/css.vim'
-Plugin 'cakebaker/scss-syntax.vim'
