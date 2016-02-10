@@ -72,6 +72,7 @@ set shiftwidth=4 "Indent/outdent by four columns"
 augroup vimrc
 au BufNewFile,BufRead *.scss setf css
 au BufNewFile,BufRead *.slim setf html
+au BufNewFile,BufRead *.js   setf javascript
 au BufRead,BufNewFile *.md set filetype=markdown
 autocmd! FileType perl setlocal shiftwidth=4 tabstop=2 softtabstop=2
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
@@ -99,57 +100,11 @@ set paste
 " テキスト挿入中の自動折り返しを日本語に対応させる
 set formatoptions+=mM
 
-
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-
-" -- markdown
-"Plugin 'plasticboy/vim-markdown'
-
-" -- html5
-Plugin 'othree/html5.vim'
-
-" -- css
-Plugin 'JulesWang/css.vim'
-Plugin 'cakebaker/scss-syntax.vim'
-
-" -- coffee
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'noc7c9/vim-iced-coffee-script'
-
-Plugin 'tomlion/vim-solidity'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList          - list configured plugins
-" :PluginInstall(!)    - install (update) plugins
-" :PluginSearch(!) foo - search (or refresh cache first) for foo
-" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
+call plug#begin('~/.vim/plugged')
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'othree/html5.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'jelera/vim-javascript-syntax'
+Plug 'tomlion/vim-solidity'
+Plug 'sjl/badwolf'
+call plug#end()
