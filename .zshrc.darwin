@@ -1,0 +1,22 @@
+# go
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH
+
+export PGDATA=/usr/local/var/postgres
+
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
+# go-ethereum
+export PATH="$HOME/project/blockchain/go-ethereum/build/bin:$PATH"
+
+# ANDROID
+export ANDROID_HOME=/Users/azusa.kikuchi/Library/Android/sdk
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+
+export APP_ID='416699761810340'
+export APP_SECRET='0b677dc2694ae97ab878959eaeb92504'
+export APP_KEY='5d292c0c7c7e4b9c40b66a7373673d141bab3d8bc27aad6160235b6f996703f068f609dae693c5e0696a718862e0c2db36ba'
+export HIPCHAT_ROOM_NAME=1148516
+export HIPCHAT_API_TOKEN=be409b58a959b58896ed354487440f

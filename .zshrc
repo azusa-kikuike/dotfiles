@@ -1,6 +1,15 @@
 #
 # ~/.zshrc
 #
+
+case ${OSTYPE} in
+    darwin*)
+        source ~/.zshrc.darwin
+        ;;
+    linux*)
+        source ~/.zshrc.linux
+        ;;
+esac
  
 # emacslike
 bindkey -e
